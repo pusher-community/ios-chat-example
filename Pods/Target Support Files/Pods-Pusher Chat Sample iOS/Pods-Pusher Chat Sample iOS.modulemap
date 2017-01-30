@@ -1,0 +1,6 @@
+framework module Pods_Pusher_Chat_Sample_iOS {
+  umbrella header "Pods-Pusher Chat Sample iOS-umbrella.h"
+
+  export *
+  module * { export * }
+}
