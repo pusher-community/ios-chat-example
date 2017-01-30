@@ -10,21 +10,14 @@ import Foundation
 import UIKit
 
 class LoginViewController: UIViewController {
-
+    
     @IBOutlet var twitterHandle: UITextField!
     
     @IBAction func loginButton(_ sender: Any) {
         if(twitterHandle.hasText){
-            
             let messagesViewController = self.storyboard?.instantiateViewController(withIdentifier: "chatViewController") as! ChatViewController
-    
-            messagesViewController.twitterHandle(twitterHandle: twitterHandle.text!)
-            
-            self.present(messagesViewController, animated: true)
-
-//            self.navigationController?.pushViewController(messagesViewController, animated: true)
-            
-            print("Button clicked :" + twitterHandle.text!)
+            messagesViewController.twitterHandle = twitterHandle.text!
+            self.present(messagesViewController, animated:true)
         }
         else{
             print("No text in textfield")

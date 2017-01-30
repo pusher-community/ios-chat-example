@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		145634699A7FE82D526453DB /* Pods_Pusher_Chat_Sample_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B3F0D33BC6134792512C0BE /* Pods_Pusher_Chat_Sample_iOS.framework */; };
+		2D205FDD1E40A0A600792BEE /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D205FDC1E40A0A600792BEE /* Message.swift */; };
+		2D205FDF1E40A30E00792BEE /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D205FDE1E40A30E00792BEE /* MessageCell.swift */; };
 		2D3288C01E3F4DDC00F45C05 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D3288BF1E3F4DDC00F45C05 /* AppDelegate.swift */; };
 		2D3288C51E3F4DDC00F45C05 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D3288C31E3F4DDC00F45C05 /* Main.storyboard */; };
 		2D3288C71E3F4DDC00F45C05 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2D3288C61E3F4DDC00F45C05 /* Assets.xcassets */; };
@@ -18,6 +20,8 @@
 
 /* Begin PBXFileReference section */
 		03DC112CA9938982531D997A /* Pods-Pusher Chat Sample iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pusher Chat Sample iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-Pusher Chat Sample iOS/Pods-Pusher Chat Sample iOS.release.xcconfig"; sourceTree = "<group>"; };
+		2D205FDC1E40A0A600792BEE /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		2D205FDE1E40A30E00792BEE /* MessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
 		2D3288BC1E3F4DDC00F45C05 /* Pusher Chat Sample iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pusher Chat Sample iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D3288BF1E3F4DDC00F45C05 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2D3288C41E3F4DDC00F45C05 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -70,6 +74,8 @@
 				2D3288C81E3F4DDC00F45C05 /* LaunchScreen.storyboard */,
 				2D3288CB1E3F4DDC00F45C05 /* Info.plist */,
 				2D550F561E3F5FC00023B9F9 /* ChatViewController.swift */,
+				2D205FDC1E40A0A600792BEE /* Message.swift */,
+				2D205FDE1E40A30E00792BEE /* MessageCell.swift */,
 			);
 			path = "Pusher Chat Sample iOS";
 			sourceTree = "<group>";
@@ -216,6 +222,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				2D550F551E3F56800023B9F9 /* LoginViewController.swift in Sources */,
+				2D205FDF1E40A30E00792BEE /* MessageCell.swift in Sources */,
+				2D205FDD1E40A0A600792BEE /* Message.swift in Sources */,
 				2D550F571E3F5FC00023B9F9 /* ChatViewController.swift in Sources */,
 				2D3288C01E3F4DDC00F45C05 /* AppDelegate.swift in Sources */,
 			);

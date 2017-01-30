@@ -7,5 +7,6 @@ target 'Pusher Chat Sample iOS' do
 
   # Pods for Pusher Chat Sample iOS
   pod 'PusherSwift'
+  pod 'AlamofireImage'
 
 end

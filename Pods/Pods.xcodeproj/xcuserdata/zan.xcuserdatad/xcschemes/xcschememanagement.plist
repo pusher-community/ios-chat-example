@@ -4,6 +4,16 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Alamofire.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>AlamofireImage.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-Pusher Chat Sample iOS.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -17,12 +27,22 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>5B7F1AFC60EA2C8C019F0778B01042B0</key>
+		<key>2B28F62499410F7EAFB63C0A388011D8</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>97B6BAA8491FDA2C95FF0B1C519D1AAB</key>
+		<key>88E9EC28B8B46C3631E6B242B50F4442</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>9EFE4C70245EE2857D336B8B9FA4E825</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>BEA07F31FFDADBE5A71B277DE5913EF9</key>
 		<dict>
 			<key>primary</key>
 			<true/>
