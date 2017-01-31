@@ -9,6 +9,8 @@
 import Foundation
 import UIKit
 import PusherSwift
+import AlamofireImage
+import Alamofire
 
 class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
@@ -79,7 +81,9 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
       
         cell.authorName.text = message.author
         cell.messageText.text = message.message
-        cell.authorAvatar.downloadedFrom(link: "https://twitter.com/" + message.author + "/profile_image")
+        
+        let imageUrl = URL(string: "https://twitter.com/" + message.author + "/profile_image")
+        cell.authorAvatar.af_setImage(withURL: imageUrl!)
         return cell
     }
     
@@ -91,47 +95,23 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func postMessage(name: String, message: String){
-    
-        var request = URLRequest(url: URL(string: "http://localhost:3000/messages")!)
-        request.httpMethod = "POST"
         
-        //TODO:
-        let postString = "name="+name+"&text="+message;
+        let params: Parameters = [
+            "name": name,
+            "text": message
+        ]
         
-        request.httpBody = postString.data(using: String.Encoding.utf8);
-        
-        let task = URLSession.shared.dataTask(with: request) { (data: Data?, response: URLResponse?, error: Error?) in
+        Alamofire.request("http://localhost:3000/messages", method: .post, parameters: params).validate().responseJSON { response in
             
-            if error != nil
-            {
-                print("error=\(error)")
-                return
+            switch response.result {
+                
+            case .success:
+                print("Validation successful")
+            case .failure(let error):
+                print(error)
             }
             
-            print("response = \(response)")
         }
-        task.resume()
-        
-    }
-}
-
-extension UIImageView {
-    func downloadedFrom(url: URL, contentMode mode: UIViewContentMode = .scaleAspectFit) {
-        contentMode = mode
-        URLSession.shared.dataTask(with: url) { (data, response, error) in
-            guard
-                let httpURLResponse = response as? HTTPURLResponse, httpURLResponse.statusCode == 200,
-                let mimeType = response?.mimeType, mimeType.hasPrefix("image"),
-                let data = data, error == nil,
-                let image = UIImage(data: data)
-                else { return }
-            DispatchQueue.main.async() { () -> Void in
-                self.image = image
-            }
-            }.resume()
-    }
-    func downloadedFrom(link: String, contentMode mode: UIViewContentMode = .scaleAspectFit) {
-        guard let url = URL(string: link) else { return }
-        downloadedFrom(url: url, contentMode: mode)
+    
     }
 }
