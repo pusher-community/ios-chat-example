@@ -13,6 +13,8 @@ import AlamofireImage
 import Alamofire
 
 class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    
+    static let MESSAGES_ENDPOINT = "http://localhost:3000/messages"
 
     @IBOutlet var message: UITextField!
     @IBAction func send(_ sender: Any) {
@@ -66,6 +68,19 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         })
         
         pusher!.connect()
+        
+        
+        let channel = pusher!.subscribe("chatroom")
+        let _ = channel.bind(eventName: "new_message", callback: { (data: Any?) -> Void in
+            
+            if let data = data as? [String: AnyObject] {
+                
+                let text = data["text"] as! String
+                let author = data["name"] as! String
+                print(author + ": " + text)
+            }
+        })
+        pusher!.connect()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -90,9 +105,9 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
   
     
     
-    func twitterHandle(twitterHandle: String){
-        self.twitterHandle = twitterHandle
-    }
+//    func twitterHandle(twitterHandle: String){
+//        self.twitterHandle = twitterHandle
+//    }
     
     func postMessage(name: String, message: String){
         
@@ -101,7 +116,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
             "text": message
         ]
         
-        Alamofire.request("http://localhost:3000/messages", method: .post, parameters: params).validate().responseJSON { response in
+        Alamofire.request(ChatViewController.MESSAGES_ENDPOINT, method: .post, parameters: params).validate().responseJSON { response in
             
             switch response.result {
                 
