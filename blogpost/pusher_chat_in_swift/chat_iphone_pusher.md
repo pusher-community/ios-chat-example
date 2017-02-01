@@ -72,12 +72,11 @@ In your `LoginViewController.swift` add the following logic to the `loginButton`
 ```language-swift
 
 @IBAction func loginButton(_ sender: Any) {
-       if(twitterHandle.hasText){
+       if twitterHandle.text != nil {
            let messagesViewController = self.storyboard?.instantiateViewController(withIdentifier: "chatViewController") as! ChatViewController
            messagesViewController.twitterHandle = twitterHandle.text!
            self.present(messagesViewController, animated:true)
-       }
-       else{
+       } else {
            print("No text in textfield")
        }
 }
@@ -99,9 +98,7 @@ Pusher channels can support unlimited number of message types, but in our case w
 In `viewDidLoad` create your Pusher instance - and copy your setup details from the Pusher Dashboard. It shoud look like this:
 
 ```language-swift
-pusher = Pusher(
-          key: "ed5b0a28bf1175148146"
-)
+pusher = Pusher(key: "ed5b0a28bf1175148146")
 ```
 
 Then subscribe to the `chatroom` channel, and bind to the `new_message` events, printing their messages to the console. Lastly, connect to Pusher.
@@ -110,6 +107,17 @@ Then subscribe to the `chatroom` channel, and bind to the `new_message` events, 
 let channel = pusher!.subscribe("chatroom")
 let _ = channel.bind(eventName: "new_message", callback: { (data: Any?) -> Void in
 
+    // not sure what your data will actually be here but potentiall could
+    // write this like the below if you know the values are all going to
+    // be `String`s
+    if let data = data as? [String: String] {
+
+        let text = data["text"]
+        let author = data["name"]
+        print(author + ": " + text)
+    }
+
+    // otherwise leave it like this
     if let data = data as? [String: AnyObject] {
 
         let text = data["text"] as! String
@@ -187,8 +195,8 @@ To make it compile, you'll need to implement the following methods - first one t
 
 ```
 func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-       return array.count
-   }
+   return array.count
+}
 ```
 
 And the second one that will create a `MessageCell` object:
@@ -209,7 +217,7 @@ let message = array.object(at: indexPath.row) as! Message
 cell.authorName.text = message.author
 cell.messageText.text = message.message
 
-let imageUrl = URL(string: "https://twitter.com/" + message.author + "/profile_image")
+let imageUrl = URL(string: "https://twitter.com/\(message.author)/profile_image")
 cell.authorAvatar.af_setImage(withURL: imageUrl!)
 ```
 
@@ -254,9 +262,7 @@ func postMessage(name: String, message: String){
         ]
 
         Alamofire.request(ChatViewController.MESSAGES_ENDPOINT, method: .post, parameters: params).validate().responseJSON { response in
-
             switch response.result {
-
             case .success:
                 print("Validation successful")
             case .failure(let error):
